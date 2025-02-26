@@ -55,3 +55,8 @@ export default {
 # npm install localforage match-sorter sort-by
 
 # npm install react-icons
+
+## https://react-hook-form.com/get-started
+# npm install react-hook-form
+# npm install @hookform/resolvers
+# npm install zod
