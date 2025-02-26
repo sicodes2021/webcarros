@@ -60,3 +60,6 @@ export default {
 # npm install react-hook-form
 # npm install @hookform/resolvers
 # npm install zod
+
+## https://console.firebase.google.com/
+# npm install firebase
