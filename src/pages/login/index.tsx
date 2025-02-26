@@ -22,7 +22,7 @@ export function Login() {
   })
 
   function onSubmit(data: FormData) {
-
+    
   }
 
   return (
@@ -37,7 +37,7 @@ export function Login() {
           </Link>
 
           <form
-            className="bg-white max-w-xl w-full rounded-lg"
+            className="bg-white max-w-xl w-full rounded-lg p-4"
             onSubmit={handleSubmit(onSubmit)}
           >
 
@@ -61,10 +61,15 @@ export function Login() {
               />
             </div>
 
-            <button>
+            <button type="submit" className="bg-zinc-900 w-full rounded-md text-white h-10 font-medium">
               Acessar
             </button>
+
           </form>
+
+          <Link to="/register">
+            Ainda não possui uma conta? Cadastre-se
+          </Link>
         </div>
       </Container>
   )
