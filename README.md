@@ -53,3 +53,5 @@ export default {
 ## https://reactrouter.com/en/main/start/tutorial
 # npm install react-router-dom
 # npm install localforage match-sorter sort-by
+
+# npm install react-icons
