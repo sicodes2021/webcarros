@@ -63,3 +63,6 @@ export default {
 
 ## https://console.firebase.google.com/
 # npm install firebase
+
+# npm install uuid
+# npm install @types/uuid --save-dev
