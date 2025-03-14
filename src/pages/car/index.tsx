@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Container } from '../../components/container'
 import { FaWhatsapp } from 'react-icons/fa'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { getDoc, doc } from 'firebase/firestore'
 import { db } from '../../services/firebaseConnection'
@@ -36,6 +36,7 @@ export function CarDatail() {
   const { id } = useParams();
   const [car, setCar] = useState<CarsProps>();
   const [sliderPerView, setSliderPerView] = useState<number>(2);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -46,6 +47,12 @@ export function CarDatail() {
 
       getDoc(docRef)
       .then((snapshot) => {
+
+        if(!snapshot.data()) {
+          navigate("/");
+        }
+
+
         setCar({
           id: snapshot.id,
           name: snapshot.data()?.name,
@@ -92,20 +99,23 @@ export function CarDatail() {
 
   return (
     <Container>
-      <Swiper 
-        slidesPerView={sliderPerView}
-        pagination={ { clickable: true } }
-        navigation
-      >
-        {car?.images.map( image => (
-          <SwiperSlide key={image.name}>
-            <img 
-              src={image.url}
-              className="w-full h-96 object-cover"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      
+      { car && (
+        <Swiper 
+          slidesPerView={sliderPerView}
+          pagination={ { clickable: true } }
+          navigation
+        >
+          {car?.images.map( image => (
+            <SwiperSlide key={image.name}>
+              <img 
+                src={image.url}
+                className="w-full h-96 object-cover"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
 
       { car && (
         <main className="w-full bg-white rounded-lg p-6 my-4">
@@ -143,6 +153,8 @@ export function CarDatail() {
           <p>{car?.whatsapp}</p>
 
           <a
+            href={`https://api.whatsapp.com/send?phone=${car?.whatsapp}&text=Olá vi esse ${car?.name} no site webcarros e fiquei interessado!`}
+            target="_blank"
             className="cursor-pointer bg-green-500 w-full text-white flex items-center justify-center gap-2 my-6 h-11 text-xl rounded-xl font-medium"
           >
             Conversar com o vendedor
