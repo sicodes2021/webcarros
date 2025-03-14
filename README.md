@@ -66,3 +66,6 @@ export default {
 
 # npm install uuid
 # npm install @types/uuid --save-dev
+
+## https://swiperjs.com/
+# npm install swiper
