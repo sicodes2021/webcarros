@@ -14,6 +14,8 @@ import { storage, db } from '../../../services/firebaseConnection'
 import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { addDoc, collection } from 'firebase/firestore'
 
+import toast from 'react-hot-toast'
+
 const schema = z.object({
   name: z.string().nonempty("O nome é obrigatório."),
   model: z.string().nonempty("O modelo é obrigatório."),
@@ -81,6 +83,7 @@ export function New() {
         }
 
         setCarImages((images) => [...images, imageItem])
+        toast.success("Imagem cadastrada com sucesso!")
       })
     })
   }
@@ -89,6 +92,7 @@ export function New() {
 
     if(carImages.length === 0) {
       alert("Envie alguma imagem deste carro!")
+      toast.error("Envie pelo menos uma imagem.")
       return;
     }
 
@@ -117,6 +121,7 @@ export function New() {
       reset();
       setCarImages([]);
       console.log("CADASTRADO COM SUCESSO!");
+      toast.success("Carro cadastrado com sucesso!")
     }).catch((error) => {
       console.log(error);
       console.log("ERRO AO CADASTRAR NO BANCO");

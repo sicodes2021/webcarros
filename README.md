@@ -69,3 +69,6 @@ export default {
 
 ## https://swiperjs.com/
 # npm install swiper
+
+## https://react-hot-toast.com/
+# npm install react-hot-toast
